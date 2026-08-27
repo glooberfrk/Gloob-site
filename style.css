@@ -14,7 +14,7 @@
   --color-about: #e8f5e9;
 }
 
-/* GLOBAL SITEWIDE BASICS */
+/* GLOBAL SITEWIDE BASICS (FO FONES an TABLES) */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -168,6 +168,137 @@ a {
 
 .avatar-display-frame {
   display: none;
+}
+
+/* 🌟 FIX 1: Add the frosted glass background layout to the mobile header container */
+#sub-page #main-header {
+  width: 100%;
+  position: fixed;
+  top: 0 !important;
+  left: 0 !important;
+  height: 60px !important;
+  z-index: 9999 !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Ensure the inner logo and menu button frame fits inside the 60px bar */
+#sub-page #main-header .container {
+  max-width: 100% !important;
+  height: 60px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 12px !important;
+  box-sizing: border-box !important; /* 🌟 FIX: Forces logo and menu to fit inside the 60px rim */
+  overflow: hidden !important;
+}
+#sub-page #main-header .site-logo img {
+  height: 30px;
+  max-height: 30px;
+  transform: translateY(-15px);
+}
+
+/* 🌟 FIX 2: Apply the pastel tinted backgrounds to the header bar itself on mobile */
+body.page-comics #main-header {
+  background-color: rgba(226, 241, 248, 0.3) !important;
+}
+body.page-commissions #main-header {
+  background-color: rgba(254, 241, 230, 0.3) !important;
+}
+body.page-wiki #main-header {
+  background-color: rgba(243, 233, 250, 0.3) !important;
+}
+body.page-about #main-header {
+  background-color: rgba(232, 245, 233, 0.3) !important;
+}
+
+/* 🌟 FIX 3: Turn the navigation panel into a clean dropdown drawer with NO scrollbars */
+#sub-page #global-nav {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden !important; /* 🌟 Absolutely cuts off any clunky scrollbars */
+  z-index: 9998;
+  transition: max-height 0.3s ease-in-out;
+}
+
+/* The vertical mobile links block inside the dropdown */
+#sub-page #global-nav ul {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100%;
+  margin: 0 !important;
+  padding: 10px 0 !important;
+  gap: 0 !important;
+  list-style: none;
+}
+
+#sub-page #global-nav a {
+  display: block !important;
+  width: 100%;
+  padding: 12px 20px !important;
+  font-size: 16px !important;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+/* THE MOBILE SWITCH: Slide the panel down when tapped */
+#sub-page .menu-checkbox:checked ~ #global-nav {
+  max-height: 280px; /* Adjust this to fit your 5 vertical links perfectly */
+}
+
+/* Hide the functional raw checkbox */
+#sub-page .menu-checkbox {
+  display: none !important;
+}
+
+/* Style the clickable Menu text link on smartphones */
+#sub-page .menu-button {
+  font-family: sans-serif;
+  font-weight: 700;
+  font-size: 15px; /* Slightly smaller to guarantee fit */
+  cursor: pointer;
+  user-select: none;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  transform: translateY(-15px);
+}
+
+body.page-comics .menu-button {
+  color: #468ac2 !important;
+}
+body.page-commissions .menu-button {
+  color: #f5842c !important;
+}
+body.page-wiki .menu-button {
+  color: #551b85 !important;
+}
+body.page-about .menu-button {
+  color: #1e8627 !important;
+}
+
+/* Apply your specific text link active colors for mobile readability */
+body.page-comics #global-nav a {
+  color: #468ac2 !important;
+  background-color: rgba(226, 241, 248, 0.8);
+}
+body.page-commissions #global-nav a {
+  color: #f5842c !important;
+  background-color: rgba(254, 241, 230, 0.8);
+}
+body.page-wiki #global-nav a {
+  color: #551b85 !important;
+  background-color: rgba(243, 233, 250, 0.8);
+}
+body.page-about #global-nav a {
+  color: #1e8627 !important;
+  background-color: rgba(232, 245, 233, 0.8);
 }
 
 /* DESKTOP HOVER SYSTEM & THE AVATAR SWIPE SPLIT ENGINE */
@@ -415,6 +546,156 @@ a {
   #home-page:has(.card-about:hover) .logo-strip {
     transform: translateY(-240px);
   }
+
+  /* ==========================================================================
+   SUBPAGE HEADER SYSTEM (REWRITTEN WITH IMAGE LOGO & CUSTOM COLOR SCHEMES)
+   ========================================================================== */
+
+  /* 1. MAIN FIXED HEADER BAR CONTAINER */
+  #sub-page #main-header {
+    width: 100%;
+    position: fixed;
+    top: 0 !important;
+    left: 0 !important;
+    height: 60px !important;
+    z-index: 9999 !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  #sub-page #main-header .container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px !important;
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    transform: translateY(-20px) !important;
+
+    justify-content: space-between !important;
+    gap: 0 !important;
+  }
+
+  #sub-page #main-header .site-logo {
+    display: flex !important;
+    align-items: center !important;
+    height: 100%;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+
+  #sub-page #main-header .site-logo img {
+    height: 32px;
+    width: auto;
+    display: block;
+  }
+
+  #sub-page #global-nav ul {
+    display: flex !important;
+    align-items: center !important;
+    list-style: none;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 24px;
+  }
+
+  #sub-page #global-nav a {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 12px !important;
+    line-height: 1 !important;
+    display: inline-block;
+    transition: color 0.2s ease;
+    background-color: transparent !important;
+  }
+
+  /* ==========================================================================
+   DYNAMIC SUBPAGE THEME COLOR ASSIGNMENTS
+   ========================================================================== */
+
+  /* --- A. COMICS PAGE THEME (Blue Header Background) --- */
+  body.page-comics #main-header {
+    background-color: rgba(226, 241, 248, 0.3) !important;
+  }
+  body.page-comics #main-header .site-logo {
+    color: #468ac2 !important;
+  }
+  body.page-comics #global-nav a {
+    color: #468ac2;
+  }
+  body.page-comics #global-nav a:hover {
+    color: #90caf9 !important;
+  }
+
+  /* --- B. COMMISSIONS PAGE THEME (Orange Header Background) --- */
+  body.page-commissions #main-header {
+    background-color: rgba(254, 241, 230, 0.3) !important;
+  }
+  body.page-commissions #main-header .site-logo {
+    color: #d15f00 !important;
+  }
+  body.page-commissions #global-nav a {
+    color: rgba(209, 95, 0, 0.65);
+  }
+  body.page-commissions #global-nav a:hover,
+  body.page-commissions #global-nav a.active-page {
+    color: #d15f00 !important;
+  }
+
+  /* --- C. WIKI PAGE THEME (Purple Header Background) --- */
+  body.page-wiki #main-header {
+    background-color: rgba(243, 233, 250, 0.3) !important;
+  }
+  body.page-wiki #main-header .site-logo {
+    color: #551b85 !important;
+  }
+  body.page-wiki #global-nav a {
+    color: rgba(85, 27, 133, 0.65);
+  }
+  body.page-wiki #global-nav a:hover,
+  body.page-wiki #global-nav a.active-page {
+    color: #551b85 !important;
+  }
+
+  /* --- D. ABOUT PAGE THEME (Green Header Background) --- */
+  body.page-about #main-header {
+    background-color: rgba(232, 245, 233, 0.3) !important;
+  }
+  body.page-about #main-header .site-logo {
+    color: #1b6622 !important;
+  }
+  body.page-about #global-nav a {
+    color: rgba(27, 102, 34, 0.65);
+  }
+  body.page-about #global-nav a:hover,
+  body.page-about #global-nav a.active-page {
+    color: #1b6622 !important;
+  }
+
+  #sub-page {
+    padding-top: 90px !important;
+    box-sizing: border-box;
+  }
+
+  #sub-page .menu-button {
+    display: none !important;
+  }
+
+  #sub-page #global-nav {
+    position: static !important;
+    max-height: none !important;
+    width: auto !important;
+    overflow: visible !important;
+  }
+
+  #sub-page #global-nav ul {
+    flex-direction: row !important;
+    padding: 0 !important;
+    gap: 24px;
+  }
 }
 
 /* HAPTIC POLKA DOT PARALLAX SYSTEM */
@@ -427,6 +708,7 @@ a {
   z-index: -100;
   overflow: hidden;
   pointer-events: none;
+
   background-image: linear-gradient(
     160deg,
     var(--bg-gradient-dark) 20%,
@@ -435,7 +717,24 @@ a {
   transition: background-image 0.5s ease;
 }
 
-#home-page #parallax-bg-canvas.dot-matrix-bg::before {
+#sub-page #parallax-bg-canvas.dot-matrix-bg,
+.page-comics #parallax-bg-canvas.dot-matrix-bg,
+.page-commissions #parallax-bg-canvas.dot-matrix-bg,
+.page-wiki #parallax-bg-canvas.dot-matrix-bg,
+.page-about #parallax-bg-canvas.dot-matrix-bg {
+  position: fixed;
+  top: -5%;
+  left: -5%;
+  width: 110vw;
+  height: 110vh;
+  z-index: -100;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#home-page #parallax-bg-canvas.dot-matrix-bg::before,
+#sub-page + #parallax-bg-canvas.dot-matrix-bg::before,
+.dot-matrix-bg::before {
   content: "";
   position: absolute;
   top: 0;
@@ -520,6 +819,32 @@ a {
       1154px 1154px,
       1178px 1178px;
   }
+}
+
+/* SUBPAGE BG STYLE */
+body.page-comics,
+body.page-commissions,
+body.page-wiki,
+body.page-about {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+body.page-comics {
+  background-image: linear-gradient(160deg, #90caf9 20%, #e2f1f8 80%);
+}
+
+body.page-commissions {
+  background-image: linear-gradient(160deg, #ffcc80 20%, #fef1e6 80%);
+}
+
+body.page-wiki {
+  background-image: linear-gradient(160deg, #ce93d8 20%, #f3e9fa 80%);
+}
+
+body.page-about {
+  background-image: linear-gradient(160deg, #a5d6a7 20%, #e8f5e9 80%);
 }
 
 /* FLOATING GLOBAL SOCIAL FOOTER */

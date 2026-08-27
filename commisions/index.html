@@ -6,24 +6,35 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Gloober_frk | Artist Hub</title>
       <!-- Connecting to your single shared CSS file -->
-      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="/style.css" />
     </head>
 
-    <body id="sub-page">
+    <body class="page-commissions" id="sub-page">
       <!--Main Header Wrapper (The logo at the top of the pages ot the top left)-->
       <header id="main-header">
         <div class="container">
           <!--To replace SVG, place a <img> tag where "Gloober" is.-->
-          <a href="index.html" class="site-logo">GLOOBER</a>
+          <a href="/" class="site-logo">
+            <img
+              src="/Images/logocomms.webp"
+              alt="Gloober Commissions Logo"
+              class="logo-img"
+            />
+          </a>
+
+          <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
+          <label for="menu-toggle" class="menu-button">Menu ☰</label>
 
           <!-- Standard Top Navigation Bar for Subpages -->
           <nav id="global-nav">
             <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="comics.html">Comics</a></li>
-              <li><a href="commissions.html">Commissions</a></li>
-              <li><a href="wiki.html" class="active-page">GloobVerse</a></li>
-              <li><a href="about.html">About</a></li>
+              <li><a href="/">Home</a></li>
+              <li><a href="/comics/">Comics</a></li>
+              <li>
+                <a href="/commisions/" class="active-page">Commissions</a>
+              </li>
+              <li><a href="/wiki/">GloobVerse</a></li>
+              <li><a href="/about/">About</a></li>
             </ul>
           </nav>
         </div>
@@ -63,6 +74,9 @@
           >
         </div>
       </footer>
+
+      <!-- 2. THE BACKGROUND CANVAS -->
+      <div id="parallax-bg-canvas" class="dot-matrix-bg"></div>
     </body>
   </html>
 </html>
