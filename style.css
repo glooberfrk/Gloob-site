@@ -1,25 +1,20 @@
-/* ==========================================================================
-   1. GLOBAL REUSABLE BRAND VARIABLES
-   ========================================================================== */
+/* GLOBAL REUSABLE BRAND VARIABLES */
 :root {
   --text-primary: #17797f;
   --text-secondary: #17797f;
   --border-color: rgba(23, 121, 127, 0.15);
   --accent-color: #f5842c;
 
-  --bg-gradient-light: #e8f7ec; /* Rich soft mint cream (Bottom-Left) */
+  --bg-gradient-light: #e8f7ec;
   --bg-gradient-dark: #a1dbb8;
 
-  /* ─── DYNAMIC HOVER BACKGROUND TINT THEMES ─── */
-  --color-comics: #e2f1f8; /* Soft ice blue tint */
-  --color-commissions: #fef1e6; /* Soft warm peach tint */
-  --color-wiki: #f3e9fa; /* Soft lilac purple tint */
-  --color-about: #e8f5e9; /* Soft pastel mint tint */
+  --color-comics: #e2f1f8;
+  --color-commissions: #fef1e6;
+  --color-wiki: #f3e9fa;
+  --color-about: #e8f5e9;
 }
 
-/* ==========================================================================
-   2. GLOBAL SITEWIDE BASICS (Applies to ALL pages)
-   ========================================================================== */
+/* GLOBAL SITEWIDE BASICS */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -27,7 +22,7 @@
 }
 html,
 body {
-  overflow-x: hidden; /* 👈 Hard-locks the viewport to stop side-scrolling */
+  overflow-x: hidden;
   position: relative;
   width: 100%;
 }
@@ -57,74 +52,56 @@ a {
   padding: 20px 0 0px 0;
 }
 
-/* ==========================================================================
-   VERTICAL CAROUSEL LOGO SYSTEM (GLOBAL STYLES)
-   ========================================================================== */
+/* LOGO SYSTEM */
 
-/* The clipping window mask */
 .site-logo .logo-window {
   position: relative;
-  height: 60px; /* 📐 Set to your 60px preference */
-  overflow: hidden; /* Hides the logos waiting in queue */
+  height: 60px;
+  overflow: hidden;
   display: inline-block;
 }
 
-/* The vertical conveyor belt setup */
 .site-logo .logo-strip {
   display: flex;
-  flex-direction: column; /* Stack images vertically instead of horizontally */
-  height: 500%; /* Sized for 5 images stacked */
+  flex-direction: column;
+  height: 500%;
   transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-/* Standardized dimensions for every logo layout slice */
 .site-logo .logo-img {
-  height: 60px; /* Must match the logo-window height exactly */
+  height: 60px;
   width: auto;
   object-fit: contain;
 }
 
-/* ==========================================================================
-   PAGE ENTRY FADE-IN & UP ANIMATION SYSTEM
-   ========================================================================== */
-
-/* 1. Define the physical travel route of the slide */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px); /* Starts 20px lower down */
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0); /* Settles perfectly in place */
+    transform: translateY(0);
   }
 }
 
-/* 2. Create the driver class to apply to your elements */
 .animate-fade-up {
   animation: fadeInUp 1.5s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
-/* 3. STAGGERED TIMING DELAYS (Stops everything from rushing in at once) */
-
-/* The logo header enters instantly */
 #main-header.animate-fade-up {
   animation-delay: 0s;
 }
 
-/* The site greeting text waits a split second */
 #site-greeting.animate-fade-up {
   animation-delay: 0.15s;
 }
 
-/* The main links and navigation engine slide in last */
 #launchpad-navigation.animate-fade-up {
   animation-delay: 0.3s;
 }
 
-/* ==========================================================================
-   3. ISOLATED HOMEPAGE STYLES (Mobile Defaults)
-   ========================================================================== */
+/* ISOLATED HOMEPAGE STYLES */
 #home-page #main-header .container,
 #home-page #site-greeting .container {
   display: flex;
@@ -189,14 +166,11 @@ a {
   margin-top: 6px;
 }
 
-/* Hide the avatars on mobile screens */
 .avatar-display-frame {
   display: none;
 }
 
-/* ==========================================================================
-   4. DESKTOP HOVER SYSTEM & THE AVATAR SWIPE SPLIT ENGINE
-   ========================================================================== */
+/* DESKTOP HOVER SYSTEM & THE AVATAR SWIPE SPLIT ENGINE */
 @media (min-width: 1100px) {
   .launchpad-split-container {
     display: flex;
@@ -251,7 +225,7 @@ a {
     transform: translateY(0);
   }
 
-  /* ─── THE ARTWORK VIEWPORT WINDOW ─── */
+  /* ARTWORK VIEWPORT WINDOW */
   .avatar-display-frame {
     display: block;
     width: 400px;
@@ -265,7 +239,6 @@ a {
     z-index: 10;
   }
 
-  /* A giant panoramic conveyor belt containing all images stitched side-by-side */
   .avatar-strip {
     display: flex;
     width: 500%;
@@ -282,7 +255,6 @@ a {
     object-fit: contain;
   }
 
-  /* 1. When the mouse enters the grid area, dim ALL cards inside it slightly */
   #home-page .grid-wrapper:hover .nav-card {
     opacity: 0.8;
     transition:
@@ -292,19 +264,14 @@ a {
       border-color 0.25s ease;
   }
 
-  /* 2. For the exact card the mouse is currently touching, force it back to 100% full clarity */
   #home-page .grid-wrapper .nav-card:hover {
     opacity: 1;
     filter: blur(0px);
   }
 
-  /* ─── DYNAMIC THEME-MATCHING COLOR & OPACITY INJECTIONS ─── */
-  /* Added :not(:hover) so these styles ONLY apply to the sibling/resting cards */
-
-  /* If COMICS is hovered: Turn RESTING cards into a faded Comics scheme */
   #home-page .grid-wrapper:has(.card-comics:hover) .nav-card:not(:hover) {
     opacity: 0.6;
-    border-color: rgba(70, 138, 194, 0.4); /* Fixed invalid color syntax */
+    border-color: rgba(70, 138, 194, 0.4);
     background-color: var(--color-comics);
   }
   #home-page .grid-wrapper:has(.card-comics:hover) .nav-card:not(:hover) h2,
@@ -315,7 +282,6 @@ a {
     color: #468ac2;
   }
 
-  /* If COMMISSIONS is hovered: Turn RESTING cards into a faded Commissions scheme */
   #home-page .grid-wrapper:has(.card-commissions:hover) .nav-card:not(:hover) {
     opacity: 0.6;
     border-color: rgba(245, 132, 44, 0.4);
@@ -335,7 +301,6 @@ a {
     color: #f5842c;
   }
 
-  /* If GLOOBVERSE / WIKI is hovered: Turn RESTING cards into a faded Wiki scheme */
   #home-page .grid-wrapper:has(.card-wiki:hover) .nav-card:not(:hover) {
     opacity: 0.6;
     border-color: rgba(85, 27, 133, 0.4);
@@ -349,7 +314,6 @@ a {
     color: #551b85;
   }
 
-  /* If ABOUT is hovered: Turn RESTING cards into a faded About scheme */
   #home-page .grid-wrapper:has(.card-about:hover) .nav-card:not(:hover) {
     opacity: 0.6;
     border-color: rgba(30, 134, 39, 0.4);
@@ -363,7 +327,6 @@ a {
     color: #1e8627;
   }
 
-  /* Hover Swipe Mappings (Unchanged) */
   .grid-wrapper:has(.card-comics:hover) + .avatar-display-frame .avatar-strip {
     transform: translateX(-400px);
   }
@@ -379,7 +342,6 @@ a {
     transform: translateX(-1600px);
   }
 
-  /* Active Hover Card States (Cleaned up !important tags) */
   #home-page .card-comics:hover {
     border-color: #468ac2;
     background-color: var(--color-comics);
@@ -416,11 +378,6 @@ a {
     color: #1e8627;
   }
 
-  /* ==========================================================================
-   THE UNBREAKABLE HOVER COLOR SWITCH SYSTEM
-   ========================================================================== */
-
-  /* When JavaScript stamps a specific state class onto the canvas, turn that color sheet to 100% visible */
   #parallax-bg-canvas.show-comics .tint-comics {
     opacity: 1 !important;
   }
@@ -434,46 +391,33 @@ a {
     opacity: 1 !important;
   }
 
-  /* ==========================================================================
-     VERTICAL CAROUSEL HINGE INJECTIONS (DESKTOP HOVER SYSTEM)
-     ========================================================================== */
-
-  /* Default Resting Position (Shows default logo) */
   #home-page .logo-strip {
     transform: translateY(0);
-    /* 🛡️ Anti-stutter: buffer delay when leaving cards to stop jerky movements */
     transition-delay: 0.1s;
   }
 
-  /* Clear the delay instantly when entering a card to make it look responsive */
   #home-page:has(.nav-card:hover) .logo-strip {
     transition-delay: 0s;
   }
 
-  /* If COMICS is hovered: Move up 60px to show 2nd image */
   #home-page:has(.card-comics:hover) .logo-strip {
     transform: translateY(-60px);
   }
 
-  /* If COMMISSIONS is hovered: Move up 120px to show 3rd image */
   #home-page:has(.card-commissions:hover) .logo-strip {
     transform: translateY(-120px);
   }
 
-  /* If WIKI is hovered: Move up 180px to show 4th image */
   #home-page:has(.card-wiki:hover) .logo-strip {
     transform: translateY(-180px);
   }
 
-  /* If ABOUT is hovered: Move up 240px to show 5th image */
   #home-page:has(.card-about:hover) .logo-strip {
     transform: translateY(-240px);
   }
-} /* <─── This closing bracket ends Section 4's media query. Leave it right there! */
+}
 
-/* ==========================================================================
-   6. HAPTIC POLKA DOT PARALLAX SYSTEM (PC Only)
-   ========================================================================== */
+/* HAPTIC POLKA DOT PARALLAX SYSTEM */
 #home-page #parallax-bg-canvas.dot-matrix-bg {
   position: fixed;
   top: -5%;
@@ -491,7 +435,6 @@ a {
   transition: background-image 0.5s ease;
 }
 
-/* THE REPEATER PATTERN CONTAINER MESH */
 #home-page #parallax-bg-canvas.dot-matrix-bg::before {
   content: "";
   position: absolute;
@@ -501,7 +444,6 @@ a {
   height: 100%;
   z-index: 5;
 
-  /* ─── NATIVE ANTI-ALIASED SMOOTH SOLID DOTS & SHADOWS ─── */
   background-image:
     radial-gradient(rgba(255, 255, 255, 0.5) 4.5px, transparent 5px),
     radial-gradient(rgba(255, 255, 255, 0.5) 4.5px, transparent 5px);
@@ -514,10 +456,8 @@ a {
     26px 26px;
   background-repeat: repeat;
 
-  /* Continuous slow loop drift math */
   animation: slowDriftLoop 80s linear infinite;
 
-  /* Haptic tracking transformations */
   transform: translate(
     calc(var(--mouse-x, 0) * 20px),
     calc(var(--mouse-y, 0) * 20px)
@@ -525,8 +465,6 @@ a {
   transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* ─── UNBREAKABLE HOVER COLOR SWITCH SYSTEM ─── */
-/* Listens for the JavaScript class injections and sets the visibility opacity to 100% */
 #parallax-bg-canvas.show-comics .tint-comics {
   opacity: 1 !important;
 }
@@ -540,7 +478,6 @@ a {
   opacity: 1 !important;
 }
 
-/* Solid background layout wash tints sheets */
 .bg-tint {
   position: absolute;
   top: 0;
@@ -549,29 +486,22 @@ a {
   height: 100%;
   opacity: 0;
   z-index: 1;
-  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* Slightly adjusted for a richer blend fade */
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* ─── NEW DYNAMIC GRADIENT COMBINATIONS ─── */
-/* Tweak these hex combinations to match the exact transition vibe you want! */
-
 .tint-comics {
-  /* Fades from a light sky ice blue to a deep ocean turquoise */
   background-image: linear-gradient(160deg, #90caf9 20%, #e2f1f8 80%);
 }
 
 .tint-commissions {
-  /* Fades from a warm pastel peach to a bright sunset orange tint */
   background-image: linear-gradient(160deg, #ffcc80 20%, #fef1e6 80%);
 }
 
 .tint-wiki {
-  /* Fades from a soft lilac purple to a mystical deep lavender */
   background-image: linear-gradient(160deg, #ce93d8 20%, #f3e9fa 80%);
 }
 
 .tint-about {
-  /* Fades from a fresh pastel mint green to a vibrant spring emerald */
   background-image: linear-gradient(160deg, #a5d6a7 20%, #e8f5e9 80%);
 }
 
@@ -592,9 +522,7 @@ a {
   }
 }
 
-/* ==========================================================================
-   7. FLOATING GLOBAL SOCIAL FOOTER (Anchored Bottom-Right Perpetually)
-   ========================================================================== */
+/* FLOATING GLOBAL SOCIAL FOOTER */
 #social-hub {
   position: fixed;
   bottom: 24px;
