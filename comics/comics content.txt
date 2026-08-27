@@ -1,0 +1,61 @@
+<!--Main content-->
+      <main id="subpage-content">
+        <div class="container">
+          <section class="page-intro">
+            <h1>Comics</h1>
+            <p>My comics and where to find them</p>
+          </section>
+
+          <!--Main comic grid wrapper-->
+          <div class="comic-showcase">
+            <article class="comic-card">
+              <!-- Left Side: Cover Art Container -->
+              <div class="comic-cover-box">
+                <!-- Replace with your actual cover photo file pathway later -->
+                <img
+                  src="images/comic-cover.jpg"
+                  alt="CATTO cover art"
+                  class="comic-cover-img"
+                />
+              </div>
+
+              <!-- Right Side: Content Details & Buttons -->
+              <div class="comic-details-box">
+                <h2 class="comic-title">CATTO</h2>
+                <p class="comic-synopsis">
+                  Follow Milo, a selective mute, as he drifts through life's
+                  serious questions and absurd surprises. Sometimes deep,
+                  sometimes silly, Milo goes through it all, one thought at a
+                  time.
+                </p>
+
+                <!-- Row 1: Internal Wiki Redirection -->
+                <div class="button-row row-internal">
+                  <a href="wiki.html" class="btn btn-wiki"
+                    >Explore the CATTOVerse</a
+                  >
+                </div>
+
+                <!-- Row 2: External Platform Reading Links -->
+                <div class="button-row row-external">
+                  <a
+                    href="https://webtoons.com..."
+                    class="btn btn-platform btn-webtoon"
+                    target="_blank"
+                    rel="noopener"
+                    >Read on Webtoon</a
+                  >
+
+                  <!-- Tapas link for future cards -->
+                  <!-- <a
+                    href="https://tapas.io..."
+                    class="btn btn-platform btn-tapas"
+                    target="_blank"
+                    rel="noopener"
+                    >Read on Tapas</a> -->
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </main>
