@@ -1,20 +1,28 @@
-/* GLOBAL REUSABLE BRAND VARIABLES */
 :root {
   --text-primary: #17797f;
   --text-secondary: #17797f;
   --border-color: rgba(23, 121, 127, 0.15);
   --accent-color: #f5842c;
-
   --bg-gradient-light: #e8f7ec;
   --bg-gradient-dark: #a1dbb8;
-
   --color-comics: #e2f1f8;
   --color-commissions: #fef1e6;
   --color-wiki: #f3e9fa;
   --color-about: #e8f5e9;
+  --color-comics-text: #468ac2;
+  --color-wiki-text: #551b85;
+  --color-about-text: #1e8627;
+  --color-commissions-text: #f5842c;
+  --color-comics-accent: #90caf9;
+  --color-commissions-accent: #ffcc80;
+  --color-wiki-accent: #ce93d8;
+  --color-about-accent: #a5d6a7;
+  --bg-comics-header: rgba(226, 241, 248, 0.3);
+  --bg-commissions-header: rgba(254, 241, 230, 0.3);
+  --bg-wiki-header: rgba(243, 233, 250, 0.3);
+  --bg-about-header: rgba(232, 245, 233, 0.3);
+  --dot-color: rgba(255, 255, 255, 0.5);
 }
-
-/* GLOBAL SITEWIDE BASICS (FO FONES an TABLES) */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -35,45 +43,36 @@ body {
   -webkit-font-smoothing: antialiased;
   padding-bottom: 50px;
 }
-
 .container {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px;
 }
-
 a {
   text-decoration: none;
   color: inherit;
 }
-
 #main-header {
   padding: 20px 0 0px 0;
 }
-
-/* LOGO SYSTEM */
-
 .site-logo .logo-window {
   position: relative;
   height: 60px;
   overflow: hidden;
   display: inline-block;
 }
-
 .site-logo .logo-strip {
   display: flex;
   flex-direction: column;
   height: 500%;
   transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 }
-
 .site-logo .logo-img {
   height: 60px;
   width: auto;
   object-fit: contain;
 }
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -84,37 +83,29 @@ a {
     transform: translateY(0);
   }
 }
-
 .animate-fade-up {
   animation: fadeInUp 1.5s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
-
 #main-header.animate-fade-up {
   animation-delay: 0s;
 }
-
 #site-greeting.animate-fade-up {
   animation-delay: 0.15s;
 }
-
 #launchpad-navigation.animate-fade-up {
   animation-delay: 0.3s;
 }
-
-/* ISOLATED HOMEPAGE STYLES */
 #home-page #main-header .container,
 #home-page #site-greeting .container {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-
 #home-page #site-greeting {
   padding: 8px 0 8px 0;
   text-align: left;
   transform: translateX(12px);
 }
-
 #home-page .greeting-subtext {
   color: var(--text-secondary);
   font-weight: 600;
@@ -124,24 +115,20 @@ a {
   margin: 0;
   transition: color 0.25s ease;
 }
-
 #home-page #launchpad-navigation {
   padding-bottom: 20px;
 }
-
 .launchpad-split-container {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-
 #home-page .grid-wrapper {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
 }
-
 #home-page .nav-card {
   border: 1px solid var(--border-color);
   border-radius: 12px;
@@ -153,24 +140,19 @@ a {
     border-color 0.25s ease,
     background-color 0.25s ease;
 }
-
 #home-page .nav-card h2 {
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
-
 #home-page .nav-card p {
   color: var(--text-secondary);
   font-size: 0.95rem;
   margin-top: 6px;
 }
-
 .avatar-display-frame {
   display: none;
 }
-
-/* 🌟 FIX 1: Add the frosted glass background layout to the mobile header container */
 #sub-page #main-header {
   width: 100%;
   position: fixed;
@@ -182,8 +164,6 @@ a {
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
-
-/* Ensure the inner logo and menu button frame fits inside the 60px bar */
 #sub-page #main-header .container {
   max-width: 100% !important;
   height: 60px !important;
@@ -191,7 +171,7 @@ a {
   align-items: center !important;
   justify-content: space-between !important;
   padding: 12px !important;
-  box-sizing: border-box !important; /* 🌟 FIX: Forces logo and menu to fit inside the 60px rim */
+  box-sizing: border-box !important;
   overflow: hidden !important;
 }
 #sub-page #main-header .site-logo img {
@@ -199,34 +179,28 @@ a {
   max-height: 30px;
   transform: translateY(-15px);
 }
-
-/* 🌟 FIX 2: Apply the pastel tinted backgrounds to the header bar itself on mobile */
 body.page-comics #main-header {
-  background-color: rgba(226, 241, 248, 0.3) !important;
+  background-color: var(--bg-comics-header) !important;
 }
 body.page-commissions #main-header {
-  background-color: rgba(254, 241, 230, 0.3) !important;
+  background-color: var(--bg-commissions-header) !important;
 }
 body.page-wiki #main-header {
-  background-color: rgba(243, 233, 250, 0.3) !important;
+  background-color: var(--bg-wiki-header) !important;
 }
 body.page-about #main-header {
-  background-color: rgba(232, 245, 233, 0.3) !important;
+  background-color: var(--bg-about-header) !important;
 }
-
-/* 🌟 FIX 3: Turn the navigation panel into a clean dropdown drawer with NO scrollbars */
 #sub-page #global-nav {
   position: absolute;
   top: 50px;
   left: 0;
   width: 100%;
   max-height: 0;
-  overflow: hidden !important; /* 🌟 Absolutely cuts off any clunky scrollbars */
+  overflow: hidden !important;
   z-index: 9998;
   transition: max-height 0.3s ease-in-out;
 }
-
-/* The vertical mobile links block inside the dropdown */
 #sub-page #global-nav ul {
   display: flex !important;
   flex-direction: column !important;
@@ -236,7 +210,6 @@ body.page-about #main-header {
   gap: 0 !important;
   list-style: none;
 }
-
 #sub-page #global-nav a {
   display: block !important;
   width: 100%;
@@ -245,22 +218,16 @@ body.page-about #main-header {
   text-decoration: none;
   box-sizing: border-box;
 }
-
-/* THE MOBILE SWITCH: Slide the panel down when tapped */
 #sub-page .menu-checkbox:checked ~ #global-nav {
-  max-height: 280px; /* Adjust this to fit your 5 vertical links perfectly */
+  max-height: 280px;
 }
-
-/* Hide the functional raw checkbox */
 #sub-page .menu-checkbox {
   display: none !important;
 }
-
-/* Style the clickable Menu text link on smartphones */
 #sub-page .menu-button {
   font-family: sans-serif;
   font-weight: 700;
-  font-size: 15px; /* Slightly smaller to guarantee fit */
+  font-size: 15px;
   cursor: pointer;
   user-select: none;
   z-index: 10001;
@@ -269,39 +236,34 @@ body.page-about #main-header {
   height: 100%;
   transform: translateY(-15px);
 }
-
 body.page-comics .menu-button {
-  color: #468ac2 !important;
+  color: var(--color-comics-text) !important;
 }
 body.page-commissions .menu-button {
-  color: #f5842c !important;
+  color: --color-commissions-text !important;
 }
 body.page-wiki .menu-button {
-  color: #551b85 !important;
+  color: var(--color-wiki-text) !important;
 }
 body.page-about .menu-button {
-  color: #1e8627 !important;
+  color: var(--color-about-text) !important;
 }
-
-/* Apply your specific text link active colors for mobile readability */
 body.page-comics #global-nav a {
-  color: #468ac2 !important;
+  color: var(--color-comics-text) !important;
   background-color: rgba(226, 241, 248, 0.8);
 }
 body.page-commissions #global-nav a {
-  color: #f5842c !important;
+  color: --color-commissions-text !important;
   background-color: rgba(254, 241, 230, 0.8);
 }
 body.page-wiki #global-nav a {
-  color: #551b85 !important;
+  color: var(--color-wiki-text) !important;
   background-color: rgba(243, 233, 250, 0.8);
 }
 body.page-about #global-nav a {
-  color: #1e8627 !important;
+  color: var(--color-about-text) !important;
   background-color: rgba(232, 245, 233, 0.8);
 }
-
-/* DESKTOP HOVER SYSTEM & THE AVATAR SWIPE SPLIT ENGINE */
 @media (min-width: 1100px) {
   .launchpad-split-container {
     display: flex;
@@ -311,7 +273,6 @@ body.page-about #global-nav a {
     gap: 64px;
     width: 100%;
   }
-
   #home-page .grid-wrapper {
     display: flex !important;
     flex-direction: column !important;
@@ -319,12 +280,10 @@ body.page-about #global-nav a {
     width: 100%;
     max-width: 360px;
   }
-
   #home-page .nav-card {
     height: 90px;
     padding: 18px 24px 24px 24px;
   }
-
   #home-page .nav-card p {
     position: absolute;
     bottom: 18px;
@@ -337,26 +296,20 @@ body.page-about #global-nav a {
       opacity 0.2s ease,
       transform 0.2s ease;
   }
-
   #home-page .nav-card h2 {
     transform: translateY(12px);
     transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
   }
-
   #home-page .nav-card:hover {
     box-shadow: 0 8px 24px rgba(23, 121, 127, 0.05);
   }
-
   #home-page .nav-card:hover h2 {
     transform: translateY(0);
   }
-
   #home-page .nav-card:hover p {
     opacity: 1;
     transform: translateY(0);
   }
-
-  /* ARTWORK VIEWPORT WINDOW */
   .avatar-display-frame {
     display: block;
     width: 400px;
@@ -369,7 +322,6 @@ body.page-about #global-nav a {
     left: auto;
     z-index: 10;
   }
-
   .avatar-strip {
     display: flex;
     width: 500%;
@@ -379,13 +331,11 @@ body.page-about #global-nav a {
     left: 0;
     transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
   }
-
   .avatar-img {
     width: 400px;
     height: 100%;
     object-fit: contain;
   }
-
   #home-page .grid-wrapper:hover .nav-card {
     opacity: 0.8;
     transition:
@@ -394,12 +344,10 @@ body.page-about #global-nav a {
       background-color 0.25s ease,
       border-color 0.25s ease;
   }
-
   #home-page .grid-wrapper .nav-card:hover {
     opacity: 1;
     filter: blur(0px);
   }
-
   #home-page .grid-wrapper:has(.card-comics:hover) .nav-card:not(:hover) {
     opacity: 0.6;
     border-color: rgba(70, 138, 194, 0.4);
@@ -407,12 +355,11 @@ body.page-about #global-nav a {
   }
   #home-page .grid-wrapper:has(.card-comics:hover) .nav-card:not(:hover) h2,
   #home-page .grid-wrapper:has(.card-comics:hover) .nav-card:not(:hover) p {
-    color: #468ac2;
+    color: var(--color-comics-text);
   }
   #home-page:has(.card-comics:hover) .greeting-subtext {
-    color: #468ac2;
+    color: var(--color-comics-text);
   }
-
   #home-page .grid-wrapper:has(.card-commissions:hover) .nav-card:not(:hover) {
     opacity: 0.6;
     border-color: rgba(245, 132, 44, 0.4);
@@ -429,9 +376,8 @@ body.page-about #global-nav a {
     color: hsl(26, 91%, 57%);
   }
   #home-page:has(.card-commissions:hover) .greeting-subtext {
-    color: #f5842c;
+    color: --color-commissions-text;
   }
-
   #home-page .grid-wrapper:has(.card-wiki:hover) .nav-card:not(:hover) {
     opacity: 0.6;
     border-color: rgba(85, 27, 133, 0.4);
@@ -442,9 +388,8 @@ body.page-about #global-nav a {
     color: hsl(273, 66%, 31%);
   }
   #home-page:has(.card-wiki:hover) .greeting-subtext {
-    color: #551b85;
+    color: var(--color-wiki-text);
   }
-
   #home-page .grid-wrapper:has(.card-about:hover) .nav-card:not(:hover) {
     opacity: 0.6;
     border-color: rgba(30, 134, 39, 0.4);
@@ -455,9 +400,8 @@ body.page-about #global-nav a {
     color: hsl(125, 63%, 32%);
   }
   #home-page:has(.card-about:hover) .greeting-subtext {
-    color: #1e8627;
+    color: var(--color-about-text);
   }
-
   .grid-wrapper:has(.card-comics:hover) + .avatar-display-frame .avatar-strip {
     transform: translateX(-400px);
   }
@@ -472,43 +416,38 @@ body.page-about #global-nav a {
   .grid-wrapper:has(.card-about:hover) + .avatar-display-frame .avatar-strip {
     transform: translateX(-1600px);
   }
-
   #home-page .card-comics:hover {
-    border-color: #468ac2;
+    border-color: var(--color-comics-text);
     background-color: var(--color-comics);
   }
   #home-page .card-comics:hover h2,
   #home-page .card-comics:hover p {
-    color: #468ac2;
+    color: var(--color-comics-text);
   }
-
   #home-page .card-commissions:hover {
-    border-color: #f5842c;
+    border-color: --color-commissions-text;
     background-color: var(--color-commissions);
   }
   #home-page .card-commissions:hover h2,
   #home-page .card-commissions:hover p {
-    color: #f5842c;
+    color: --color-commissions-text;
   }
-
   #home-page .card-wiki:hover {
-    border-color: #551b85;
+    border-color: var(--color-wiki-text);
     background-color: var(--color-wiki);
   }
   #home-page .card-wiki:hover h2,
   #home-page .card-wiki:hover p {
-    color: #551b85;
+    color: var(--color-wiki-text);
   }
-
   #home-page .card-about:hover {
-    border-color: #1e8627;
+    border-color: var(--color-about-text);
     background-color: var(--color-about);
   }
   #home-page .card-about:hover h2,
   #home-page .card-about:hover p {
-    color: #1e8627;
+    color: var(--color-about-text);
   }
-
   #parallax-bg-canvas.show-comics .tint-comics {
     opacity: 1 !important;
   }
@@ -521,37 +460,25 @@ body.page-about #global-nav a {
   #parallax-bg-canvas.show-about .tint-about {
     opacity: 1 !important;
   }
-
   #home-page .logo-strip {
     transform: translateY(0);
     transition-delay: 0.1s;
   }
-
   #home-page:has(.nav-card:hover) .logo-strip {
     transition-delay: 0s;
   }
-
   #home-page:has(.card-comics:hover) .logo-strip {
     transform: translateY(-60px);
   }
-
   #home-page:has(.card-commissions:hover) .logo-strip {
     transform: translateY(-120px);
   }
-
   #home-page:has(.card-wiki:hover) .logo-strip {
     transform: translateY(-180px);
   }
-
   #home-page:has(.card-about:hover) .logo-strip {
     transform: translateY(-240px);
   }
-
-  /* ==========================================================================
-   SUBPAGE HEADER SYSTEM (REWRITTEN WITH IMAGE LOGO & CUSTOM COLOR SCHEMES)
-   ========================================================================== */
-
-  /* 1. MAIN FIXED HEADER BAR CONTAINER */
   #sub-page #main-header {
     width: 100%;
     position: fixed;
@@ -562,7 +489,6 @@ body.page-about #global-nav a {
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px);
   }
-
   #sub-page #main-header .container {
     max-width: 100%;
     margin: 0 auto;
@@ -571,11 +497,9 @@ body.page-about #global-nav a {
     display: flex !important;
     align-items: center !important;
     transform: translateY(-20px) !important;
-
     justify-content: space-between !important;
     gap: 0 !important;
   }
-
   #sub-page #main-header .site-logo {
     display: flex !important;
     align-items: center !important;
@@ -585,13 +509,12 @@ body.page-about #global-nav a {
     font-size: 20px;
     letter-spacing: 2px;
   }
-
   #sub-page #main-header .site-logo img {
     height: 32px;
     width: auto;
     display: block;
+    transform: translateY(0px);
   }
-
   #sub-page #global-nav ul {
     display: flex !important;
     align-items: center !important;
@@ -600,7 +523,6 @@ body.page-about #global-nav a {
     padding: 0 !important;
     gap: 24px;
   }
-
   #sub-page #global-nav a {
     text-decoration: none;
     font-weight: 500;
@@ -611,94 +533,73 @@ body.page-about #global-nav a {
     transition: color 0.2s ease;
     background-color: transparent !important;
   }
-
-  /* ==========================================================================
-   DYNAMIC SUBPAGE THEME COLOR ASSIGNMENTS
-   ========================================================================== */
-
-  /* --- A. COMICS PAGE THEME (Blue Header Background) --- */
   body.page-comics #main-header {
-    background-color: rgba(226, 241, 248, 0.3) !important;
+    background-color: var(--bg-comics-header) !important;
   }
   body.page-comics #main-header .site-logo {
-    color: #468ac2 !important;
+    color: var(--color-comics-text) !important;
   }
   body.page-comics #global-nav a {
-    color: #468ac2;
+    color: var(--color-comics-text);
   }
   body.page-comics #global-nav a:hover {
-    color: #90caf9 !important;
+    color: var(--color-comics-accent) !important;
   }
-
-  /* --- B. COMMISSIONS PAGE THEME (Orange Header Background) --- */
   body.page-commissions #main-header {
-    background-color: rgba(254, 241, 230, 0.3) !important;
+    background-color: var(--bg-commissions-header) !important;
   }
   body.page-commissions #main-header .site-logo {
-    color: #d15f00 !important;
+    color: var(--color-commissions-text) !important;
   }
   body.page-commissions #global-nav a {
-    color: rgba(209, 95, 0, 0.65);
+    color: var(--color-commissions-text);
   }
-  body.page-commissions #global-nav a:hover,
-  body.page-commissions #global-nav a.active-page {
-    color: #d15f00 !important;
+  body.page-commissions #global-nav a:hover {
+    color: var(--color-commissions-accent) !important;
   }
-
-  /* --- C. WIKI PAGE THEME (Purple Header Background) --- */
   body.page-wiki #main-header {
-    background-color: rgba(243, 233, 250, 0.3) !important;
+    background-color: var(--bg-wiki-header) !important;
   }
   body.page-wiki #main-header .site-logo {
-    color: #551b85 !important;
+    color: var(--color-wiki-text) !important;
   }
   body.page-wiki #global-nav a {
-    color: rgba(85, 27, 133, 0.65);
+    color: var(--color-wiki-text);
   }
-  body.page-wiki #global-nav a:hover,
-  body.page-wiki #global-nav a.active-page {
-    color: #551b85 !important;
+  body.page-wiki #global-nav a:hover {
+    color: var(--color-wiki-accent) !important;
   }
-
-  /* --- D. ABOUT PAGE THEME (Green Header Background) --- */
   body.page-about #main-header {
-    background-color: rgba(232, 245, 233, 0.3) !important;
+    background-color: var(--bg-about-header) !important;
   }
   body.page-about #main-header .site-logo {
-    color: #1b6622 !important;
+    color: var(--color-about-text) !important;
   }
   body.page-about #global-nav a {
-    color: rgba(27, 102, 34, 0.65);
+    color: var(--color-about-text);
   }
-  body.page-about #global-nav a:hover,
-  body.page-about #global-nav a.active-page {
-    color: #1b6622 !important;
+  body.page-about #global-nav a:hover {
+    color: var(--color-about-accent) !important;
   }
-
   #sub-page {
     padding-top: 90px !important;
     box-sizing: border-box;
   }
-
   #sub-page .menu-button {
     display: none !important;
   }
-
   #sub-page #global-nav {
     position: static !important;
     max-height: none !important;
     width: auto !important;
     overflow: visible !important;
   }
-
   #sub-page #global-nav ul {
     flex-direction: row !important;
     padding: 0 !important;
     gap: 24px;
   }
 }
-
-/* HAPTIC POLKA DOT PARALLAX SYSTEM */
 #home-page #parallax-bg-canvas.dot-matrix-bg {
   position: fixed;
   top: -5%;
@@ -708,7 +609,6 @@ body.page-about #global-nav a {
   z-index: -100;
   overflow: hidden;
   pointer-events: none;
-
   background-image: linear-gradient(
     160deg,
     var(--bg-gradient-dark) 20%,
@@ -716,7 +616,6 @@ body.page-about #global-nav a {
   );
   transition: background-image 0.5s ease;
 }
-
 #sub-page #parallax-bg-canvas.dot-matrix-bg,
 .page-comics #parallax-bg-canvas.dot-matrix-bg,
 .page-commissions #parallax-bg-canvas.dot-matrix-bg,
@@ -731,7 +630,6 @@ body.page-about #global-nav a {
   overflow: hidden;
   pointer-events: none;
 }
-
 #home-page #parallax-bg-canvas.dot-matrix-bg::before,
 #sub-page + #parallax-bg-canvas.dot-matrix-bg::before,
 .dot-matrix-bg::before {
@@ -742,11 +640,9 @@ body.page-about #global-nav a {
   width: 100%;
   height: 100%;
   z-index: 5;
-
   background-image:
-    radial-gradient(rgba(255, 255, 255, 0.5) 4.5px, transparent 5px),
-    radial-gradient(rgba(255, 255, 255, 0.5) 4.5px, transparent 5px);
-
+    radial-gradient(var(--dot-color) 4.5px, transparent 5px),
+    radial-gradient(var(--dot-color) 4.5px, transparent 5px);
   background-size: 48px 48px;
   background-position:
     0px 0px,
@@ -754,16 +650,13 @@ body.page-about #global-nav a {
     2px 2px,
     26px 26px;
   background-repeat: repeat;
-
   animation: slowDriftLoop 80s linear infinite;
-
   transform: translate(
     calc(var(--mouse-x, 0) * 20px),
     calc(var(--mouse-y, 0) * 20px)
   );
   transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
-
 #parallax-bg-canvas.show-comics .tint-comics {
   opacity: 1 !important;
 }
@@ -776,7 +669,6 @@ body.page-about #global-nav a {
 #parallax-bg-canvas.show-about .tint-about {
   opacity: 1 !important;
 }
-
 .bg-tint {
   position: absolute;
   top: 0;
@@ -787,23 +679,34 @@ body.page-about #global-nav a {
   z-index: 1;
   transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
-
 .tint-comics {
-  background-image: linear-gradient(160deg, #90caf9 20%, #e2f1f8 80%);
+  background-image: linear-gradient(
+    160deg,
+    var(--color-comics-accent) 20%,
+    #e2f1f8 80%
+  );
 }
-
 .tint-commissions {
-  background-image: linear-gradient(160deg, #ffcc80 20%, #fef1e6 80%);
+  background-image: linear-gradient(
+    160deg,
+    var(--color-commissions-accent) 20%,
+    #fef1e6 80%
+  );
 }
-
 .tint-wiki {
-  background-image: linear-gradient(160deg, #ce93d8 20%, #f3e9fa 80%);
+  background-image: linear-gradient(
+    160deg,
+    var(--color-wiki-accent) 20%,
+    #f3e9fa 80%
+  );
 }
-
 .tint-about {
-  background-image: linear-gradient(160deg, #a5d6a7 20%, #e8f5e9 80%);
+  background-image: linear-gradient(
+    160deg,
+    var(--color-about-accent) 20%,
+    #e8f5e9 80%
+  );
 }
-
 @keyframes slowDriftLoop {
   0% {
     background-position:
@@ -820,8 +723,6 @@ body.page-about #global-nav a {
       1178px 1178px;
   }
 }
-
-/* SUBPAGE BG STYLE */
 body.page-comics,
 body.page-commissions,
 body.page-wiki,
@@ -830,24 +731,34 @@ body.page-about {
   background-attachment: fixed;
   background-size: cover;
 }
-
 body.page-comics {
-  background-image: linear-gradient(160deg, #90caf9 20%, #e2f1f8 80%);
+  background-image: linear-gradient(
+    160deg,
+    var(--color-comics-accent) 20%,
+    #e2f1f8 80%
+  );
 }
-
 body.page-commissions {
-  background-image: linear-gradient(160deg, #ffcc80 20%, #fef1e6 80%);
+  background-image: linear-gradient(
+    160deg,
+    var(--color-commissions-accent) 20%,
+    #fef1e6 80%
+  );
 }
-
 body.page-wiki {
-  background-image: linear-gradient(160deg, #ce93d8 20%, #f3e9fa 80%);
+  background-image: linear-gradient(
+    160deg,
+    var(--color-wiki-accent) 20%,
+    #f3e9fa 80%
+  );
 }
-
 body.page-about {
-  background-image: linear-gradient(160deg, #a5d6a7 20%, #e8f5e9 80%);
+  background-image: linear-gradient(
+    160deg,
+    var(--color-about-accent) 20%,
+    #e8f5e9 80%
+  );
 }
-
-/* FLOATING GLOBAL SOCIAL FOOTER */
 #social-hub {
   position: fixed;
   bottom: 24px;
@@ -857,7 +768,6 @@ body.page-about {
   z-index: 9999;
   pointer-events: none;
 }
-
 .social-links-wrapper {
   display: flex;
   gap: 24px;
@@ -872,14 +782,12 @@ body.page-about {
   box-shadow: 0 10px 40px rgba(23, 121, 127, 0.04);
   max-width: calc(100vw - 48px);
 }
-
 .social-link {
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-primary);
   transition: color 0.2s ease;
 }
-
 .social-link:hover {
   color: var(--accent-color);
 }
