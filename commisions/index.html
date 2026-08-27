@@ -13,17 +13,16 @@
       <!--Main Header Wrapper (The logo at the top of the pages ot the top left)-->
       <header id="main-header">
         <div class="container">
+          <div class="nav-spacer"></div>
+
           <!--To replace SVG, place a <img> tag where "Gloober" is.-->
           <a href="/" class="site-logo">
             <img
               src="/Images/logocomms.webp"
-              alt="Gloober Commissions Logo"
+              alt="Gloober Comics Logo"
               class="logo-img"
             />
           </a>
-
-          <input type="checkbox" id="menu-toggle" class="menu-checkbox" />
-          <label for="menu-toggle" class="menu-button">Menu ☰</label>
 
           <!-- Standard Top Navigation Bar for Subpages -->
           <nav id="global-nav">
@@ -37,6 +36,16 @@
               <li><a href="/about/">About</a></li>
             </ul>
           </nav>
+
+          <button
+            id="menu-trigger"
+            class="menu-button"
+            aria-label="Toggle Navigation"
+          >
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
         </div>
       </header>
 
@@ -77,6 +86,39 @@
 
       <!-- 2. THE BACKGROUND CANVAS -->
       <div id="parallax-bg-canvas" class="dot-matrix-bg"></div>
+
+      <script>
+        const menuTrigger = document.getElementById("menu-trigger");
+        const globalNav = document.getElementById("global-nav");
+
+        // 1. Open / Close panel on click
+        menuTrigger.addEventListener("click", (e) => {
+          e.stopPropagation(); // Prevents immediate close click event bubbling
+          menuTrigger.classList.toggle("open");
+          globalNav.classList.toggle("open");
+        });
+
+        // 2. Close when user clicks anywhere outside the nav or button area
+        document.addEventListener("click", (e) => {
+          if (
+            !globalNav.contains(e.target) &&
+            !menuTrigger.contains(e.target)
+          ) {
+            menuTrigger.classList.remove("open");
+            globalNav.classList.remove("open");
+          }
+        });
+
+        // 3. Close immediately when user starts scrolling the main page window
+        window.addEventListener(
+          "scroll",
+          () => {
+            menuTrigger.classList.remove("open");
+            globalNav.classList.remove("open");
+          },
+          { passive: true },
+        ); // Enhances mobile scrolling processing performance
+      </script>
     </body>
   </html>
 </html>
