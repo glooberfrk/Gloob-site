@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Gloober_frk | Artist Hub</title>
+      <!-- Connecting to your single shared CSS file -->
+      <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body id="home-page">
+      <!--Main Header Wrapper (The logo at the top of the pages ot the top left)-->
+      <!--Main Header Wrapper-->
+    <header id="main-header" class="animate-fade-up">
+      <div class="container">
+        <a href="index.html" class="site-logo">
+          <div class="logo-window">
+            <!-- Vertical Conveyor Belt Container -->
+            <div class="logo-strip">
+              <img src="Images/logodefault.webp" alt="Gloober Default Logo" class="logo-img">
+              <img src="Images/logocomics.webp" alt="Gloober Comics Logo" class="logo-img">
+              <img src="Images/logocomms.webp" alt="Gloober Commissions Logo" class="logo-img">
+              <img src="Images/logoverse.webp" alt="Gloober Wiki Logo" class="logo-img">
+              <img src="Images/logoabout.webp" alt="Gloober About Logo" class="logo-img">
+            </div>
+          </div>
+        </a>
+      </div>
+        </header>
+
+
+
+
+      <main>
+        <!--The slogan thingy-->
+        <section id="site-greeting" class="animate-fade-up">
+          <div class="container">
+            <p class="greeting-subtext">I make stuff. Here's that stuff.</p>
+          </div>
+        </section>
+
+        <!--Nav cards & Avatar thingy-->
+        <section id="nav-cards">
+          <div class="container">
+            <div class="launchpad-split-container">
+              <div class="grid-wrapper animate-fade-up">
+                <a href="comics.html" class="nav-card card-comics delayed-link">
+                  <span class="card-icon" aria-hidden="true"></span>
+                  <div class="card-content">
+                    <h2>Comics</h2>
+                    <p>Explore stories, read on webtoon or Tapas</p>
+                  </div>
+                </a>
+
+                <a href="commissions.html" class="nav-card card-commissions delayed-link">
+                  <span class="card-icon" aria-hidden="true"></span>
+                  <div class="card-content">
+                    <h2>Commissions</h2>
+                    <p>Details, pricing and availability</p>
+                  </div>
+                </a>
+
+                <a href="wiki.html" class="nav-card card-wiki delayed-link">
+                  <span class="card-icon" aria-hidden="true"></span>
+                  <div class="card-content">
+                    <h2>GloobVerse</h2>
+                    <p>Wikis, characters and lore</p>
+                  </div>
+                </a>
+
+                <a href="about.html" class="nav-card card-about delayed-link">
+                  <span class="card-icon" aria-hidden="true"></span>
+                  <div class="card-content">
+                    <h2>About</h2>
+                    <p>About me if you're curious :p</p>
+                  </div>
+                </a>
+              </div>
+              <div class="avatar-display-frame animate-fade-up">
+                <div class="avatar-strip">
+                  <img
+                    src="Images/logos default.webp"
+                    class="avatar-img img-default"
+                    alt="Default Character Illustration"
+                  />
+                  <img
+                    src="Images/logos default.webp"
+                    class="avatar-img img-comics"
+                    alt="Comics Theme Character State"
+                  />
+                  <img
+                    src="Images/logos default.webp"
+                    class="avatar-img img-commissions"
+                    alt="Commissions Theme Character State"
+                  />
+                  <img
+                    src="Images/logos default.webp"
+                    class="avatar-img img-wiki"
+                    alt="GloobVerse Theme Character State"
+                  />
+                  <img
+                    src="Images/logos default.webp"
+                    class="avatar-img img-about"
+                    alt="About Profile Theme Character State"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <!--Social media links-->
+      <footer id="social-hub">
+        <div class="social-links-wrapper">
+          <a
+            href="https://www.instagram.com/gloober_frk/"
+            class="social-link"
+            target="_blank"
+            rel="noopener"
+            >Instagram</a
+          >
+          <a
+            href="https://www.webtoons.com/p/community/en/u/gloober"
+            class="social-link"
+            target="_blank"
+            rel="noopener"
+            >Webtoon</a
+          >
+          <a
+            href="https://artfight.net/~gloober_frk"
+            class="social-link"
+            target="_blank"
+            rel="noopener"
+            >Artfight</a
+          >
+          <a
+            href="https://toyhou.se/gloober_frk"
+            class="social-link"
+            target="_blank"
+            rel="noopener"
+            >Toyhouse</a
+          >
+        </div>
+      </footer>
+
+     <!-- 2. THE BACKGROUND CANVAS WITH THE 4 STATE HOVER TINTS -->
+    <div id="parallax-bg-canvas" class="dot-matrix-bg">
+        <div class="bg-tint tint-comics"></div>
+        <div class="bg-tint tint-commissions"></div>
+        <div class="bg-tint tint-wiki"></div>
+        <div class="bg-tint tint-about"></div>
+    </div>
+
+    <!-- 3. THE DUAL-ACTION HAPTIC & COLOR CONTROLLER SCRIPT -->
+    <script>
+        if (window.innerWidth >= 960) {
+            const canvas = document.getElementById('parallax-bg-canvas');
+            
+            // Explicitly selecting cards by their unique classes
+            const cardComics = document.querySelector('.card-comics');
+            const cardCommissions = document.querySelector('.card-commissions');
+            const cardWiki = document.querySelector('.card-wiki');
+            const cardAbout = document.querySelector('.card-about');
+
+            // ─── PART 1: THE HAPTIC SWAY MOUSE TRACKER ───
+            window.addEventListener('mousemove', (e) => {
+                const x = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+                const y = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
+
+                canvas.style.setProperty('--mouse-x', x);
+                canvas.style.setProperty('--mouse-y', y);
+            });
+
+            // ─── PART 2: THE BULLETPROOF HOVER COLOR DETECTOR ───
+            if(cardComics) {
+                cardComics.addEventListener('mouseenter', () => canvas.classList.add('show-comics'));
+                cardComics.addEventListener('mouseleave', () => canvas.classList.remove('show-comics'));
+            }
+            if(cardCommissions) {
+                cardCommissions.addEventListener('mouseenter', () => canvas.classList.add('show-commissions'));
+                cardCommissions.addEventListener('mouseleave', () => canvas.classList.remove('show-commissions'));
+            }
+            if(cardWiki) {
+                cardWiki.addEventListener('mouseenter', () => canvas.classList.add('show-wiki'));
+                cardWiki.addEventListener('mouseleave', () => canvas.classList.remove('show-wiki'));
+            }
+            if(cardAbout) {
+                cardAbout.addEventListener('mouseenter', () => canvas.classList.add('show-about'));
+                cardAbout.addEventListener('mouseleave', () => canvas.classList.remove('show-about'));
+            }
+          }
+          // 1. HANDLE TOUCHSCREEN TAP DELAYS
+  document.querySelectorAll('.delayed-link').forEach(card => {
+    card.addEventListener('click', function(event) {
+      const isTouch = window.matchMedia("(pointer: coarse)").matches;
+      
+      if (isTouch) {
+        event.preventDefault(); 
+        const targetUrl = this.getAttribute('href');
+        
+        setTimeout(() => {
+          window.location.href = targetUrl;
+        }, 800); 
+      }
+    });
+  });
+
+  // 2. THE ABSOLUTE REFRESH SOLUTION FOR MOBILE HISTORY CACHES
+  window.addEventListener('pageshow', function(event) {
+    // If event.persisted is true, or performance navigation type indicates a back-forward layout shift
+    const historyTraversal = event.persisted || 
+                             (typeof window.performance != "undefined" && 
+                              window.performance.navigation.type === 2);
+                              
+    if (historyTraversal) {
+      // Instantly refresh the template context to completely destroy sticky touchscreen states
+      window.location.reload();
+    }
+  });
+    </script>
+
+    </body>
+  </html>
+</html>

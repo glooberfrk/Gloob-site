@@ -1,0 +1,632 @@
+/* ==========================================================================
+   1. GLOBAL REUSABLE BRAND VARIABLES
+   ========================================================================== */
+:root {
+  --text-primary: #17797f;
+  --text-secondary: #17797f;
+  --border-color: rgba(23, 121, 127, 0.15);
+  --accent-color: #f5842c;
+
+  --bg-gradient-light: #e8f7ec; /* Rich soft mint cream (Bottom-Left) */
+  --bg-gradient-dark: #a1dbb8;
+
+  /* ─── DYNAMIC HOVER BACKGROUND TINT THEMES ─── */
+  --color-comics: #e2f1f8; /* Soft ice blue tint */
+  --color-commissions: #fef1e6; /* Soft warm peach tint */
+  --color-wiki: #f3e9fa; /* Soft lilac purple tint */
+  --color-about: #e8f5e9; /* Soft pastel mint tint */
+}
+
+/* ==========================================================================
+   2. GLOBAL SITEWIDE BASICS (Applies to ALL pages)
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  overflow-x: hidden; /* 👈 Hard-locks the viewport to stop side-scrolling */
+  position: relative;
+  width: 100%;
+}
+body {
+  background-color: transparent;
+  color: var(--text-primary);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 50px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#main-header {
+  padding: 20px 0 0px 0;
+}
+
+/* ==========================================================================
+   VERTICAL CAROUSEL LOGO SYSTEM (GLOBAL STYLES)
+   ========================================================================== */
+
+/* The clipping window mask */
+.site-logo .logo-window {
+  position: relative;
+  height: 60px; /* 📐 Set to your 60px preference */
+  overflow: hidden; /* Hides the logos waiting in queue */
+  display: inline-block;
+}
+
+/* The vertical conveyor belt setup */
+.site-logo .logo-strip {
+  display: flex;
+  flex-direction: column; /* Stack images vertically instead of horizontally */
+  height: 500%; /* Sized for 5 images stacked */
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Standardized dimensions for every logo layout slice */
+.site-logo .logo-img {
+  height: 60px; /* Must match the logo-window height exactly */
+  width: auto;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   PAGE ENTRY FADE-IN & UP ANIMATION SYSTEM
+   ========================================================================== */
+
+/* 1. Define the physical travel route of the slide */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Starts 20px lower down */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* Settles perfectly in place */
+  }
+}
+
+/* 2. Create the driver class to apply to your elements */
+.animate-fade-up {
+  animation: fadeInUp 1.5s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+/* 3. STAGGERED TIMING DELAYS (Stops everything from rushing in at once) */
+
+/* The logo header enters instantly */
+#main-header.animate-fade-up {
+  animation-delay: 0s;
+}
+
+/* The site greeting text waits a split second */
+#site-greeting.animate-fade-up {
+  animation-delay: 0.15s;
+}
+
+/* The main links and navigation engine slide in last */
+#launchpad-navigation.animate-fade-up {
+  animation-delay: 0.3s;
+}
+
+/* ==========================================================================
+   3. ISOLATED HOMEPAGE STYLES (Mobile Defaults)
+   ========================================================================== */
+#home-page #main-header .container,
+#home-page #site-greeting .container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#home-page #site-greeting {
+  padding: 8px 0 8px 0;
+  text-align: left;
+  transform: translateX(12px);
+}
+
+#home-page .greeting-subtext {
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  max-width: 100%;
+  margin: 0;
+  transition: color 0.25s ease;
+}
+
+#home-page #launchpad-navigation {
+  padding-bottom: 20px;
+}
+
+.launchpad-split-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#home-page .grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+#home-page .nav-card {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  display: block;
+  background-color: rgba(240, 246, 236, 0.6);
+  position: relative;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+#home-page .nav-card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+#home-page .nav-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 6px;
+}
+
+/* Hide the avatars on mobile screens */
+.avatar-display-frame {
+  display: none;
+}
+
+/* ==========================================================================
+   4. DESKTOP HOVER SYSTEM & THE AVATAR SWIPE SPLIT ENGINE
+   ========================================================================== */
+@media (min-width: 1100px) {
+  .launchpad-split-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 64px;
+    width: 100%;
+  }
+
+  #home-page .grid-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  #home-page .nav-card {
+    height: 90px;
+    padding: 18px 24px 24px 24px;
+  }
+
+  #home-page .nav-card p {
+    position: absolute;
+    bottom: 18px;
+    left: 24px;
+    right: 24px;
+    margin-top: 0;
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  #home-page .nav-card h2 {
+    transform: translateY(12px);
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  #home-page .nav-card:hover {
+    box-shadow: 0 8px 24px rgba(23, 121, 127, 0.05);
+  }
+
+  #home-page .nav-card:hover h2 {
+    transform: translateY(0);
+  }
+
+  #home-page .nav-card:hover p {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── THE ARTWORK VIEWPORT WINDOW ─── */
+  .avatar-display-frame {
+    display: block;
+    width: 400px;
+    height: 480px;
+    overflow: hidden;
+    border-radius: 16px;
+    position: fixed;
+    top: 5%;
+    right: calc(50% - 460px);
+    left: auto;
+    z-index: 10;
+  }
+
+  /* A giant panoramic conveyor belt containing all images stitched side-by-side */
+  .avatar-strip {
+    display: flex;
+    width: 500%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  .avatar-img {
+    width: 400px;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* 1. When the mouse enters the grid area, dim ALL cards inside it slightly */
+  #home-page .grid-wrapper:hover .nav-card {
+    opacity: 0.8;
+    transition:
+      opacity 0.25s ease,
+      filter 0.25s ease,
+      background-color 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  /* 2. For the exact card the mouse is currently touching, force it back to 100% full clarity */
+  #home-page .grid-wrapper .nav-card:hover {
+    opacity: 1;
+    filter: blur(0px);
+  }
+
+  /* ─── DYNAMIC THEME-MATCHING COLOR & OPACITY INJECTIONS ─── */
+  /* Added :not(:hover) so these styles ONLY apply to the sibling/resting cards */
+
+  /* If COMICS is hovered: Turn RESTING cards into a faded Comics scheme */
+  #home-page .grid-wrapper:has(.card-comics:hover) .nav-card:not(:hover) {
+    opacity: 0.6;
+    border-color: rgba(70, 138, 194, 0.4); /* Fixed invalid color syntax */
+    background-color: var(--color-comics);
+  }
+  #home-page .grid-wrapper:has(.card-comics:hover) .nav-card:not(:hover) h2,
+  #home-page .grid-wrapper:has(.card-comics:hover) .nav-card:not(:hover) p {
+    color: #468ac2;
+  }
+  #home-page:has(.card-comics:hover) .greeting-subtext {
+    color: #468ac2;
+  }
+
+  /* If COMMISSIONS is hovered: Turn RESTING cards into a faded Commissions scheme */
+  #home-page .grid-wrapper:has(.card-commissions:hover) .nav-card:not(:hover) {
+    opacity: 0.6;
+    border-color: rgba(245, 132, 44, 0.4);
+    background-color: var(--color-commissions);
+  }
+  #home-page
+    .grid-wrapper:has(.card-commissions:hover)
+    .nav-card:not(:hover)
+    h2,
+  #home-page
+    .grid-wrapper:has(.card-commissions:hover)
+    .nav-card:not(:hover)
+    p {
+    color: hsl(26, 91%, 57%);
+  }
+  #home-page:has(.card-commissions:hover) .greeting-subtext {
+    color: #f5842c;
+  }
+
+  /* If GLOOBVERSE / WIKI is hovered: Turn RESTING cards into a faded Wiki scheme */
+  #home-page .grid-wrapper:has(.card-wiki:hover) .nav-card:not(:hover) {
+    opacity: 0.6;
+    border-color: rgba(85, 27, 133, 0.4);
+    background-color: var(--color-wiki);
+  }
+  #home-page .grid-wrapper:has(.card-wiki:hover) .nav-card:not(:hover) h2,
+  #home-page .grid-wrapper:has(.card-wiki:hover) .nav-card:not(:hover) p {
+    color: hsl(273, 66%, 31%);
+  }
+  #home-page:has(.card-wiki:hover) .greeting-subtext {
+    color: #551b85;
+  }
+
+  /* If ABOUT is hovered: Turn RESTING cards into a faded About scheme */
+  #home-page .grid-wrapper:has(.card-about:hover) .nav-card:not(:hover) {
+    opacity: 0.6;
+    border-color: rgba(30, 134, 39, 0.4);
+    background-color: var(--color-about);
+  }
+  #home-page .grid-wrapper:has(.card-about:hover) .nav-card:not(:hover) h2,
+  #home-page .grid-wrapper:has(.card-about:hover) .nav-card:not(:hover) p {
+    color: hsl(125, 63%, 32%);
+  }
+  #home-page:has(.card-about:hover) .greeting-subtext {
+    color: #1e8627;
+  }
+
+  /* Hover Swipe Mappings (Unchanged) */
+  .grid-wrapper:has(.card-comics:hover) + .avatar-display-frame .avatar-strip {
+    transform: translateX(-400px);
+  }
+  .grid-wrapper:has(.card-commissions:hover)
+    + .avatar-display-frame
+    .avatar-strip {
+    transform: translateX(-800px);
+  }
+  .grid-wrapper:has(.card-wiki:hover) + .avatar-display-frame .avatar-strip {
+    transform: translateX(-1200px);
+  }
+  .grid-wrapper:has(.card-about:hover) + .avatar-display-frame .avatar-strip {
+    transform: translateX(-1600px);
+  }
+
+  /* Active Hover Card States (Cleaned up !important tags) */
+  #home-page .card-comics:hover {
+    border-color: #468ac2;
+    background-color: var(--color-comics);
+  }
+  #home-page .card-comics:hover h2,
+  #home-page .card-comics:hover p {
+    color: #468ac2;
+  }
+
+  #home-page .card-commissions:hover {
+    border-color: #f5842c;
+    background-color: var(--color-commissions);
+  }
+  #home-page .card-commissions:hover h2,
+  #home-page .card-commissions:hover p {
+    color: #f5842c;
+  }
+
+  #home-page .card-wiki:hover {
+    border-color: #551b85;
+    background-color: var(--color-wiki);
+  }
+  #home-page .card-wiki:hover h2,
+  #home-page .card-wiki:hover p {
+    color: #551b85;
+  }
+
+  #home-page .card-about:hover {
+    border-color: #1e8627;
+    background-color: var(--color-about);
+  }
+  #home-page .card-about:hover h2,
+  #home-page .card-about:hover p {
+    color: #1e8627;
+  }
+
+  /* ==========================================================================
+   THE UNBREAKABLE HOVER COLOR SWITCH SYSTEM
+   ========================================================================== */
+
+  /* When JavaScript stamps a specific state class onto the canvas, turn that color sheet to 100% visible */
+  #parallax-bg-canvas.show-comics .tint-comics {
+    opacity: 1 !important;
+  }
+  #parallax-bg-canvas.show-commissions .tint-commissions {
+    opacity: 1 !important;
+  }
+  #parallax-bg-canvas.show-wiki .tint-wiki {
+    opacity: 1 !important;
+  }
+  #parallax-bg-canvas.show-about .tint-about {
+    opacity: 1 !important;
+  }
+
+  /* ==========================================================================
+     VERTICAL CAROUSEL HINGE INJECTIONS (DESKTOP HOVER SYSTEM)
+     ========================================================================== */
+
+  /* Default Resting Position (Shows default logo) */
+  #home-page .logo-strip {
+    transform: translateY(0);
+    /* 🛡️ Anti-stutter: buffer delay when leaving cards to stop jerky movements */
+    transition-delay: 0.1s;
+  }
+
+  /* Clear the delay instantly when entering a card to make it look responsive */
+  #home-page:has(.nav-card:hover) .logo-strip {
+    transition-delay: 0s;
+  }
+
+  /* If COMICS is hovered: Move up 60px to show 2nd image */
+  #home-page:has(.card-comics:hover) .logo-strip {
+    transform: translateY(-60px);
+  }
+
+  /* If COMMISSIONS is hovered: Move up 120px to show 3rd image */
+  #home-page:has(.card-commissions:hover) .logo-strip {
+    transform: translateY(-120px);
+  }
+
+  /* If WIKI is hovered: Move up 180px to show 4th image */
+  #home-page:has(.card-wiki:hover) .logo-strip {
+    transform: translateY(-180px);
+  }
+
+  /* If ABOUT is hovered: Move up 240px to show 5th image */
+  #home-page:has(.card-about:hover) .logo-strip {
+    transform: translateY(-240px);
+  }
+} /* <─── This closing bracket ends Section 4's media query. Leave it right there! */
+
+/* ==========================================================================
+   6. HAPTIC POLKA DOT PARALLAX SYSTEM (PC Only)
+   ========================================================================== */
+#home-page #parallax-bg-canvas.dot-matrix-bg {
+  position: fixed;
+  top: -5%;
+  left: -5%;
+  width: 110vw;
+  height: 110vh;
+  z-index: -100;
+  overflow: hidden;
+  pointer-events: none;
+  background-image: linear-gradient(
+    160deg,
+    var(--bg-gradient-dark) 20%,
+    var(--bg-gradient-light) 80%
+  );
+  transition: background-image 0.5s ease;
+}
+
+/* THE REPEATER PATTERN CONTAINER MESH */
+#home-page #parallax-bg-canvas.dot-matrix-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+
+  /* ─── NATIVE ANTI-ALIASED SMOOTH SOLID DOTS & SHADOWS ─── */
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.5) 4.5px, transparent 5px),
+    radial-gradient(rgba(255, 255, 255, 0.5) 4.5px, transparent 5px);
+
+  background-size: 48px 48px;
+  background-position:
+    0px 0px,
+    24px 24px,
+    2px 2px,
+    26px 26px;
+  background-repeat: repeat;
+
+  /* Continuous slow loop drift math */
+  animation: slowDriftLoop 80s linear infinite;
+
+  /* Haptic tracking transformations */
+  transform: translate(
+    calc(var(--mouse-x, 0) * 20px),
+    calc(var(--mouse-y, 0) * 20px)
+  );
+  transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ─── UNBREAKABLE HOVER COLOR SWITCH SYSTEM ─── */
+/* Listens for the JavaScript class injections and sets the visibility opacity to 100% */
+#parallax-bg-canvas.show-comics .tint-comics {
+  opacity: 1 !important;
+}
+#parallax-bg-canvas.show-commissions .tint-commissions {
+  opacity: 1 !important;
+}
+#parallax-bg-canvas.show-wiki .tint-wiki {
+  opacity: 1 !important;
+}
+#parallax-bg-canvas.show-about .tint-about {
+  opacity: 1 !important;
+}
+
+/* Solid background layout wash tints sheets */
+.bg-tint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* Slightly adjusted for a richer blend fade */
+}
+
+/* ─── NEW DYNAMIC GRADIENT COMBINATIONS ─── */
+/* Tweak these hex combinations to match the exact transition vibe you want! */
+
+.tint-comics {
+  /* Fades from a light sky ice blue to a deep ocean turquoise */
+  background-image: linear-gradient(160deg, #90caf9 20%, #e2f1f8 80%);
+}
+
+.tint-commissions {
+  /* Fades from a warm pastel peach to a bright sunset orange tint */
+  background-image: linear-gradient(160deg, #ffcc80 20%, #fef1e6 80%);
+}
+
+.tint-wiki {
+  /* Fades from a soft lilac purple to a mystical deep lavender */
+  background-image: linear-gradient(160deg, #ce93d8 20%, #f3e9fa 80%);
+}
+
+.tint-about {
+  /* Fades from a fresh pastel mint green to a vibrant spring emerald */
+  background-image: linear-gradient(160deg, #a5d6a7 20%, #e8f5e9 80%);
+}
+
+@keyframes slowDriftLoop {
+  0% {
+    background-position:
+      0px 0px,
+      24px 24px,
+      2px 2px,
+      26px 26px;
+  }
+  100% {
+    background-position:
+      1152px 1152px,
+      1176px 1176px,
+      1154px 1154px,
+      1178px 1178px;
+  }
+}
+
+/* ==========================================================================
+   7. FLOATING GLOBAL SOCIAL FOOTER (Anchored Bottom-Right Perpetually)
+   ========================================================================== */
+#social-hub {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  left: auto;
+  width: max-content;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.social-links-wrapper {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 12px 28px;
+  border-radius: 50px;
+  pointer-events: auto;
+  box-shadow: 0 10px 40px rgba(23, 121, 127, 0.04);
+  max-width: calc(100vw - 48px);
+}
+
+.social-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+
+.social-link:hover {
+  color: var(--accent-color);
+}
